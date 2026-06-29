@@ -1,23 +1,26 @@
 import { Suspense, lazy } from "react";
 import { useSystemCore } from "@/contexts/SystemCoreContext";
+import { CanvasErrorBoundary } from "./CanvasErrorBoundary";
 
 const SystemCoreCanvas = lazy(() => import("./SystemCoreCanvas"));
 
 /**
  * Fixed, behind-content layer that hosts the global 3D core. Renders nothing
  * when the core is disabled (mobile / no-WebGL / reduced-motion) — sections
- * show their SVG fallback instead.
+ * show their SVG fallback instead. Any 3D error degrades to that fallback.
  */
 export function SystemCoreLayer() {
-  const { enabled, exploded } = useSystemCore();
+  const { enabled, exploded, report3DFailure } = useSystemCore();
   if (!enabled) return null;
 
   return (
     <>
       <div className="pointer-events-none fixed inset-0 z-0" aria-hidden>
-        <Suspense fallback={null}>
-          <SystemCoreCanvas />
-        </Suspense>
+        <CanvasErrorBoundary onError={report3DFailure}>
+          <Suspense fallback={null}>
+            <SystemCoreCanvas />
+          </Suspense>
+        </CanvasErrorBoundary>
       </div>
 
       {exploded && (

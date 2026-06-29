@@ -19,6 +19,8 @@ interface SystemCoreContextValue {
   enabled: boolean;
   exploded: boolean;
   toggleExploded: () => void;
+  /** Called if the WebGL canvas throws — disables 3D and shows the fallback. */
+  report3DFailure: () => void;
 }
 
 const SystemCoreContext = createContext<SystemCoreContextValue | null>(null);
@@ -39,19 +41,21 @@ function detectWebGL(): boolean {
 export function SystemCoreProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<SystemCoreState>(DEFAULT_SYSTEM_STATE);
   const [exploded, setExploded] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   const reduced = usePrefersReducedMotion();
   const isDesktop = useMediaQuery(MEDIA.desktop);
   const [webgl] = useState(detectWebGL);
 
-  // 3D runs only on capable desktops that allow motion.
-  const enabled = webgl && !reduced && isDesktop;
+  // 3D runs only on capable desktops that allow motion and haven't errored.
+  const enabled = webgl && !reduced && isDesktop && !failed;
 
   const toggleExploded = useCallback(() => setExploded((e) => !e), []);
+  const report3DFailure = useCallback(() => setFailed(true), []);
 
   const value = useMemo<SystemCoreContextValue>(
-    () => ({ state, setState, enabled, exploded, toggleExploded }),
-    [state, enabled, exploded, toggleExploded],
+    () => ({ state, setState, enabled, exploded, toggleExploded, report3DFailure }),
+    [state, enabled, exploded, toggleExploded, report3DFailure],
   );
 
   return (
