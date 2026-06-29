@@ -1,6 +1,7 @@
 import { Suspense } from "react";
-import { Outlet, ScrollRestoration } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { Footer } from "./Footer";
 
 function RouteFallback() {
@@ -13,8 +14,10 @@ function RouteFallback() {
   );
 }
 
-/** Shared shell: skip link, nav, routed content, footer, scroll restore. */
+/** Shared shell: smooth scroll, skip link, nav, routed content, footer. */
 export function AppLayout() {
+  useSmoothScroll();
+
   return (
     <div className="relative flex min-h-screen flex-col">
       <a
@@ -33,7 +36,6 @@ export function AppLayout() {
       </main>
 
       <Footer />
-      <ScrollRestoration />
     </div>
   );
 }

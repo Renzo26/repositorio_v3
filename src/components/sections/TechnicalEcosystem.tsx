@@ -1,5 +1,8 @@
+import { useRef } from "react";
 import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
+import { useGsap } from "@/hooks/useGsap";
+import { revealBatch } from "@/animations/sectionReveals";
 import { techCategories } from "@/data/technologies";
 import { projects } from "@/data/projects";
 import { ACCENT_VAR } from "@/types";
@@ -10,21 +13,35 @@ const titleBySlug: Record<string, string> = Object.fromEntries(
 );
 
 export function TechnicalEcosystem() {
+  const root = useRef<HTMLElement>(null);
+
+  useGsap(root, (scope) => {
+    revealBatch(scope, { start: "top 80%" });
+  });
+
   return (
-    <section id="ecosystem" className="relative py-28 lg:py-36">
+    <section ref={root} id="ecosystem" className="relative py-28 lg:py-36">
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionLabel index="04" total="06">
-            Ecossistema Técnico
-          </SectionLabel>
-          <p className="max-w-xs text-pretty text-sm leading-relaxed text-text-secondary">
+          <div data-reveal>
+            <SectionLabel index="04" total="06">
+              Ecossistema Técnico
+            </SectionLabel>
+          </div>
+          <p
+            data-reveal
+            className="max-w-xs text-pretty text-sm leading-relaxed text-text-secondary"
+          >
             Um mapa de trabalho, agrupado por área. Cada tecnologia se conecta
             aos projetos em que ela roda.
           </p>
         </div>
 
         {/* Center identity */}
-        <div className="mt-16 flex flex-col items-center text-center lg:mt-20">
+        <div
+          data-reveal
+          className="mt-16 flex flex-col items-center text-center lg:mt-20"
+        >
           <span
             aria-hidden
             className="mb-5 size-2 rounded-full bg-pastel-lilac"
@@ -44,7 +61,10 @@ export function TechnicalEcosystem() {
         />
 
         {/* Category map — hairline grid */}
-        <div className="grid grid-cols-1 gap-px border border-border-secondary bg-border-secondary sm:grid-cols-2 lg:grid-cols-5">
+        <div
+          data-reveal
+          className="grid grid-cols-1 gap-px border border-border-secondary bg-border-secondary sm:grid-cols-2 lg:grid-cols-5"
+        >
           {techCategories.map((cat) => {
             const accent = ACCENT_VAR[cat.accent];
             return (

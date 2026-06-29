@@ -1,18 +1,29 @@
+import { useRef } from "react";
 import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
+import { useGsap } from "@/hooks/useGsap";
+import { revealBatch } from "@/animations/sectionReveals";
 import { site } from "@/data/site";
 
 export function About() {
+  const root = useRef<HTMLElement>(null);
+
+  useGsap(root, (scope) => {
+    revealBatch(scope, { start: "top 80%" });
+  });
+
   return (
-    <section id="about" className="relative py-28 lg:py-36">
+    <section ref={root} id="about" className="relative py-28 lg:py-36">
       <Container>
-        <SectionLabel index="05" total="06">
-          Sobre
-        </SectionLabel>
+        <div data-reveal>
+          <SectionLabel index="05" total="06">
+            Sobre
+          </SectionLabel>
+        </div>
 
         <div className="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-12 lg:gap-10">
           {/* Portrait + meta */}
-          <div className="lg:col-span-4">
+          <div data-reveal className="lg:col-span-4">
             <div className="grain relative aspect-[4/5] overflow-hidden border border-border-primary bg-background-secondary">
               <div className="bg-grid absolute inset-0 opacity-30" />
               <div
@@ -51,7 +62,7 @@ export function About() {
           </div>
 
           {/* Editorial text */}
-          <div className="lg:col-span-7 lg:col-start-6">
+          <div data-reveal className="lg:col-span-7 lg:col-start-6">
             <p className="text-balance text-[clamp(1.4rem,2.6vw,2.1rem)] font-medium leading-[1.2] tracking-[-0.01em] text-text-primary">
               {site.about.lead}
             </p>

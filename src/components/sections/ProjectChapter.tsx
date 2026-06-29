@@ -28,20 +28,32 @@ export function ProjectChapter({ project, index }: ProjectChapterProps) {
     <article className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
       {/* Text column */}
       <div className={cn("min-w-0 lg:col-span-5", reversed && "lg:order-2")}>
-        <div className="flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.2em]">
+        <div
+          data-reveal
+          className="flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.2em]"
+        >
           <span style={{ color: accent }}>Projeto {project.id}</span>
           <span aria-hidden className="h-px w-7 bg-border-primary" />
           <span className="text-text-muted">{project.meta.category}</span>
         </div>
 
-        <h3 className="mt-5 text-[clamp(2rem,4vw,3rem)] font-medium leading-[1] tracking-[-0.02em] text-text-primary">
+        <h3
+          data-reveal
+          className="mt-5 text-[clamp(2rem,4vw,3rem)] font-medium leading-[1] tracking-[-0.02em] text-text-primary"
+        >
           {project.title}
         </h3>
-        <p className="text-pretty mt-4 max-w-md text-base leading-relaxed text-text-secondary">
+        <p
+          data-reveal
+          className="text-pretty mt-4 max-w-md text-base leading-relaxed text-text-secondary"
+        >
           {project.tagline}
         </p>
 
-        <dl className="mt-8 grid max-w-md grid-cols-1 gap-y-2.5 border-t border-border-secondary pt-6 sm:grid-cols-2 sm:gap-x-6">
+        <dl
+          data-reveal
+          className="mt-8 grid max-w-md grid-cols-1 gap-y-2.5 border-t border-border-secondary pt-6 sm:grid-cols-2 sm:gap-x-6"
+        >
           {META_ROWS(project).map(([label, value]) => (
             <div key={label} className="flex justify-between gap-4 sm:block">
               <dt className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-text-muted">
@@ -54,13 +66,14 @@ export function ProjectChapter({ project, index }: ProjectChapterProps) {
           ))}
         </dl>
 
-        <div className="mt-7 flex flex-wrap gap-2">
+        <div data-reveal className="mt-7 flex flex-wrap gap-2">
           {project.technologies.slice(0, 6).map((t) => (
             <TechTag key={t}>{t}</TechTag>
           ))}
         </div>
 
         <Link
+          data-reveal
           to={href}
           className="group mt-9 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-text-primary"
         >
@@ -78,6 +91,7 @@ export function ProjectChapter({ project, index }: ProjectChapterProps) {
       <div className={cn("lg:col-span-7", reversed && "lg:order-1")}>
         <Link
           to={href}
+          data-cover
           aria-label={`Abrir estudo de caso de ${project.title}`}
           className="group relative block aspect-[4/3] overflow-hidden border border-border-primary bg-background-secondary"
         >

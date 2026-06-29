@@ -1,18 +1,32 @@
+import { useRef } from "react";
 import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { TechTag } from "@/components/common/TechTag";
+import { useGsap } from "@/hooks/useGsap";
+import { revealBatch } from "@/animations/sectionReveals";
 import { experience } from "@/data/experience";
 import { cn } from "@/utils/cn";
 
 export function Experience() {
+  const root = useRef<HTMLElement>(null);
+
+  useGsap(root, (scope) => {
+    revealBatch(scope, { start: "top 80%", stagger: 0.12 });
+  });
+
   return (
-    <section id="experience" className="relative py-28 lg:py-36">
+    <section ref={root} id="experience" className="relative py-28 lg:py-36">
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionLabel index="03" total="06">
-            Experiência
-          </SectionLabel>
-          <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-text-muted">
+          <div data-reveal>
+            <SectionLabel index="03" total="06">
+              Experiência
+            </SectionLabel>
+          </div>
+          <p
+            data-reveal
+            className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-text-muted"
+          >
             {experience.length} posições · mais recentes primeiro
           </p>
         </div>
@@ -21,6 +35,7 @@ export function Experience() {
           {experience.map((item) => (
             <li
               key={item.id}
+              data-reveal
               className="relative pb-16 pl-8 last:pb-0 sm:pl-12"
             >
               {/* marker */}

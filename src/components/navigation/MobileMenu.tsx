@@ -6,6 +6,7 @@ import { navLinks } from "@/data/navigation";
 import { socialLinks } from "@/data/socialLinks";
 import { site } from "@/data/site";
 import { hashId, scrollToId } from "@/utils/scroll";
+import { getLenisInstance } from "@/animations/lenisInstance";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 interface MobileMenuProps {
@@ -28,6 +29,15 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
+
+  // Pause smooth scroll while the overlay is open.
+  useEffect(() => {
+    const lenis = getLenisInstance();
+    if (!lenis) return;
+    if (open) lenis.stop();
+    else lenis.start();
+    return () => lenis.start();
+  }, [open]);
 
   const handleNav = (href: string) => (e: React.MouseEvent) => {
     const id = hashId(href);

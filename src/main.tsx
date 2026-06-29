@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 
 import "@fontsource-variable/geist/index.css";
 import "@fontsource-variable/geist-mono/index.css";
+import "lenis/dist/lenis.css";
 import "@/styles/index.css";
 
 import { App } from "./App";

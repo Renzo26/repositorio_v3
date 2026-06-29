@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import type { ProjectSection } from "@/types";
@@ -7,6 +8,8 @@ import { Container } from "@/components/common/Container";
 import { TechTag } from "@/components/common/TechTag";
 import { AnimatedLink } from "@/components/common/AnimatedLink";
 import { SystemCorePlaceholder } from "@/components/three/SystemCorePlaceholder";
+import { useGsap } from "@/hooks/useGsap";
+import { revealBatch } from "@/animations/sectionReveals";
 import {
   projects,
   projectBySlug,
@@ -16,7 +19,10 @@ import { site } from "@/data/site";
 
 function CaseStudyBlock({ section }: { section: ProjectSection }) {
   return (
-    <div className="grid gap-6 border-t border-border-secondary py-14 lg:grid-cols-12 lg:gap-10">
+    <div
+      data-reveal
+      className="grid gap-6 border-t border-border-secondary py-14 lg:grid-cols-12 lg:gap-10"
+    >
       <div className="lg:col-span-3">
         <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-text-muted lg:sticky lg:top-24">
           {section.label}
@@ -62,6 +68,15 @@ function CaseStudyBlock({ section }: { section: ProjectSection }) {
 export function ProjectPage() {
   const { slug } = useParams();
   const project = slug ? projectBySlug(slug) : undefined;
+  const root = useRef<HTMLElement>(null);
+
+  useGsap(
+    root,
+    (scope) => {
+      revealBatch(scope, { start: "top 85%" });
+    },
+    [slug],
+  );
 
   if (!project) {
     return (
@@ -86,7 +101,7 @@ export function ProjectPage() {
   const next = projects[(idx + 1) % projects.length];
 
   return (
-    <article>
+    <article ref={root}>
       <Seo
         title={`${project.title} — ${site.name}`}
         description={project.description}

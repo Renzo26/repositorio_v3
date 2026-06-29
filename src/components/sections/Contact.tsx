@@ -1,15 +1,26 @@
+import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { Button } from "@/components/common/Button";
 import { AnimatedLink } from "@/components/common/AnimatedLink";
 import { SystemCorePlaceholder } from "@/components/three/SystemCorePlaceholder";
+import { useGsap } from "@/hooks/useGsap";
+import { maskReveal, revealBatch } from "@/animations/sectionReveals";
 import { socialLinks } from "@/data/socialLinks";
 import { site } from "@/data/site";
 
 export function Contact() {
+  const root = useRef<HTMLElement>(null);
+
+  useGsap(root, (scope) => {
+    maskReveal(scope, "[data-line]", { start: "top 78%" });
+    revealBatch(scope, { start: "top 80%" });
+  });
+
   return (
     <section
+      ref={root}
       id="contact"
       className="relative overflow-hidden py-32 lg:py-48"
     >
@@ -25,23 +36,30 @@ export function Contact() {
       </div>
 
       <Container className="relative z-10">
-        <SectionLabel index="06" total="06">
-          Contato
-        </SectionLabel>
+        <div data-reveal>
+          <SectionLabel index="06" total="06">
+            Contato
+          </SectionLabel>
+        </div>
 
         <h2 className="text-balance mt-10 text-[clamp(2rem,8.5vw,6rem)] font-medium leading-[0.98] tracking-[-0.03em] text-text-primary sm:leading-[0.95]">
           {site.contact.headline.map((line, i) => (
-            <span key={i} className="block">
-              {line}
+            <span key={i} className="block overflow-hidden pb-[0.06em]">
+              <span data-line className="block">
+                {line}
+              </span>
             </span>
           ))}
         </h2>
 
-        <p className="text-pretty mt-8 max-w-lg text-base leading-relaxed text-text-secondary sm:text-lg">
+        <p
+          data-reveal
+          className="text-pretty mt-8 max-w-lg text-base leading-relaxed text-text-secondary sm:text-lg"
+        >
           {site.contact.body}
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center gap-6">
+        <div data-reveal className="mt-10 flex flex-wrap items-center gap-6">
           <Button href={`mailto:${site.email}`} size="md">
             {site.contact.cta}
             <ArrowUpRight size={15} />
@@ -55,6 +73,7 @@ export function Contact() {
         </div>
 
         <nav
+          data-reveal
           aria-label="Onde me encontrar"
           className="mt-16 flex flex-wrap gap-x-10 gap-y-4 border-t border-border-secondary pt-8"
         >
