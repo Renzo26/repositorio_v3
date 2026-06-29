@@ -41,12 +41,12 @@ export function Navbar() {
             <Monogram />
             <span className="hidden items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-text-muted lg:flex">
               <span aria-hidden className="h-3 w-px bg-border-primary" />
-              Systems in Motion
+              Sistemas em Movimento
             </span>
           </div>
 
           <nav
-            aria-label="Primary"
+            aria-label="Principal"
             className="hidden items-center gap-8 md:flex"
           >
             {navLinks.map((link) => (
@@ -64,14 +64,14 @@ export function Navbar() {
               onClick={handleHashNav("/#contact")}
               className="border border-border-primary px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-text-primary transition-colors duration-300 hover:border-text-muted hover:bg-surface-primary"
             >
-              Let&apos;s talk
+              Vamos conversar
             </Link>
           </nav>
 
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
-            aria-label="Open menu"
+            aria-label="Abrir menu"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             className="grid size-10 place-items-center border border-border-primary text-text-primary transition-colors hover:border-text-muted md:hidden"

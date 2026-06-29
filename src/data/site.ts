@@ -1,75 +1,75 @@
 /**
- * Single source of truth for identity + editorial copy.
- * Keep all human-readable strings here so components stay structural.
+ * Fonte única de identidade + textos editoriais.
+ * Mantenha todas as strings legíveis aqui para os componentes seguirem estruturais.
  */
 export const site = {
   name: "Arthur Renzo",
   monogram: "AR",
-  title: "Software Engineer",
+  title: "Engenheiro de Software",
   roles: [
-    "Software Engineer",
-    "Full-Stack Developer",
-    "Automation Specialist",
+    "Engenheiro de Software",
+    "Desenvolvedor Full-Stack",
+    "Especialista em Automação",
   ],
-  location: "Santo André · Brazil",
-  locationShort: "Santo André, Brazil",
+  location: "Santo André · Brasil",
+  locationShort: "Santo André, Brasil",
   timezone: "GMT-3",
   email: "arthur.renzospider@gmail.com",
-  availability: "Available for selected projects",
+  availability: "Disponível para projetos selecionados",
 
   company: {
     name: "CloudySolutions",
-    role: "Founder",
+    role: "Fundador",
     description:
-      "An ecosystem for software, automations, bots and AI agents — not an agency, a workshop for digital systems.",
+      "Um ecossistema de software, automações, bots e agentes de IA — não uma agência, mas uma oficina de sistemas digitais.",
   },
 
   seo: {
-    title: "Arthur Renzo — Software Engineer & Automation Specialist",
+    title: "Arthur Renzo — Engenheiro de Software & Especialista em Automação",
     description:
-      "Portfolio of Arthur Renzo, Software Engineer focused on full-stack systems, intelligent automations, APIs and AI-powered solutions.",
+      "Portfólio de Arthur Renzo, Engenheiro de Software focado em sistemas full-stack, automações inteligentes, APIs e soluções com IA.",
     url: "https://arthurrenzo.dev",
   },
 
   hero: {
-    /** Rendered line-by-line with masked reveals later. */
-    headline: ["I build systems,", "automations and", "digital experiences."],
+    /** Renderizado linha a linha, com revelações por máscara mais à frente. */
+    headline: ["Eu construo sistemas,", "automações e", "experiências digitais."],
     support:
-      "Software Engineer focused on full-stack systems, intelligent automations, APIs and AI-powered operations.",
-    technologies: ["PYTHON", "C#", "REACT", "N8N", "APIS", "AI SYSTEMS"],
+      "Engenheiro de Software focado em sistemas full-stack, automações inteligentes, APIs e operações potencializadas por IA.",
+    technologies: ["PYTHON", "C#", "REACT", "N8N", "APIS", "SISTEMAS DE IA"],
   },
 
   manifesto: {
     statement: [
-      "Technology should not only work.",
-      "It should connect people, processes",
-      "and decisions.",
+      "A tecnologia não deveria apenas funcionar.",
+      "Ela deveria conectar pessoas, processos",
+      "e decisões.",
     ],
-    body: "I design and build complete systems — from interfaces and APIs to automations, integrations and AI agents — so that the moving parts behave like one coherent product.",
+    body: "Eu projeto e construo sistemas completos — de interfaces e APIs a automações, integrações e agentes de IA — para que as partes em movimento se comportem como um único produto coerente.",
   },
 
   about: {
-    lead: "I'm a software engineer who likes the unglamorous middle of things: the API contract, the queue that never drops a message, the automation that quietly runs at 3am.",
+    lead: "Sou um engenheiro de software que gosta do meio pouco glamouroso das coisas: o contrato da API, a fila que nunca perde uma mensagem, a automação que roda quietinha às 3 da manhã.",
     paragraphs: [
-      "I work across the stack — Python and C# on the back end, React and TypeScript on the front — but what I care about is the system as a whole: how data moves, how services talk, where a human still needs to be in the loop.",
-      "Lately most of that energy goes into automations and AI-powered operations: WhatsApp-first products, n8n workflows, message queues and conversational agents that take real work off people's hands.",
-      "I run CloudySolutions, where I get to take these ideas end to end — from the first webhook to the running product.",
+      "Trabalho em toda a stack — Python e C# no back-end, React e TypeScript no front — mas o que me importa é o sistema como um todo: como os dados se movem, como os serviços conversam, onde ainda é preciso ter uma pessoa no circuito.",
+      "Ultimamente, boa parte dessa energia vai para automações e operações com IA: produtos com o WhatsApp em primeiro lugar, fluxos no n8n, filas de mensagens e agentes conversacionais que tiram trabalho real das mãos das pessoas.",
+      "Toco a CloudySolutions, onde levo essas ideias de ponta a ponta — do primeiro webhook ao produto rodando.",
     ],
     interests: [
-      "Building products",
-      "Solving real problems",
-      "Automations",
-      "System integration",
-      "Digital experiences",
-      "Entrepreneurship",
+      "Construir produtos",
+      "Resolver problemas reais",
+      "Automações",
+      "Integração de sistemas",
+      "Experiências digitais",
+      "Empreender",
     ],
-    education: "Self-directed · Continuous",
+    education: "Autodidata · Contínuo",
   },
 
   contact: {
-    headline: ["Let's build", "something useful."],
-    body: "Have a system to design, an automation to ship, or an operation to make smarter? Start a conversation.",
-    cta: "Start a conversation",
+    headline: ["Vamos construir", "algo útil."],
+    body: "Tem um sistema para projetar, uma automação para colocar no ar ou uma operação para deixar mais inteligente? Vamos conversar.",
+    cta: "Iniciar uma conversa",
   },
 } as const;
 

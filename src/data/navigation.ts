@@ -1,24 +1,24 @@
 import type { NavLink, SectionRef } from "@/types";
 
-/** Top navigation. Hash targets resolve to home sections. */
+/** Navegação do topo. Os alvos de hash apontam para as seções da home. */
 export const navLinks: NavLink[] = [
-  { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Trabalhos", href: "/#work" },
+  { label: "Sobre", href: "/#about" },
+  { label: "Experiência", href: "/#experience" },
+  { label: "Contato", href: "/#contact" },
 ];
 
 /**
- * Home sections in scroll order. `index` powers the authorial
- * "SECTION 01 / 06" labels and the nav section-indicator (Etapa 3+).
+ * Seções da home em ordem de scroll. `index` alimenta os rótulos autorais
+ * "SEÇÃO 01 / 06" e o indicador de seção do nav (Etapa 3+).
  */
 export const sections: SectionRef[] = [
   { id: "manifesto", label: "Manifesto", index: "01" },
-  { id: "work", label: "Selected Work", index: "02" },
-  { id: "experience", label: "Experience", index: "03" },
-  { id: "ecosystem", label: "Technical Ecosystem", index: "04" },
-  { id: "about", label: "About", index: "05" },
-  { id: "contact", label: "Contact", index: "06" },
+  { id: "work", label: "Trabalhos Selecionados", index: "02" },
+  { id: "experience", label: "Experiência", index: "03" },
+  { id: "ecosystem", label: "Ecossistema Técnico", index: "04" },
+  { id: "about", label: "Sobre", index: "05" },
+  { id: "contact", label: "Contato", index: "06" },
 ];
 
 export const TOTAL_SECTIONS = sections.length;

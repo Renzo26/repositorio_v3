@@ -26,7 +26,7 @@ export function Contact() {
 
       <Container className="relative z-10">
         <SectionLabel index="06" total="06">
-          Contact
+          Contato
         </SectionLabel>
 
         <h2 className="text-balance mt-10 text-[clamp(2rem,8.5vw,6rem)] font-medium leading-[0.98] tracking-[-0.03em] text-text-primary sm:leading-[0.95]">
@@ -55,11 +55,11 @@ export function Contact() {
         </div>
 
         <nav
-          aria-label="Elsewhere"
+          aria-label="Onde me encontrar"
           className="mt-16 flex flex-wrap gap-x-10 gap-y-4 border-t border-border-secondary pt-8"
         >
           {socialLinks
-            .filter((s) => s.label !== "Email")
+            .filter((s) => s.label !== "E-mail")
             .map((s) => (
               <AnimatedLink
                 key={s.label}

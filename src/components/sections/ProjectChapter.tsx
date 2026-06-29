@@ -12,10 +12,10 @@ interface ProjectChapterProps {
 }
 
 const META_ROWS = (p: Project): [string, string][] => [
-  ["Category", p.meta.category],
-  ["Role", p.meta.role],
-  ["Focus", p.meta.focus],
-  ["Year", p.meta.year],
+  ["Categoria", p.meta.category],
+  ["Função", p.meta.role],
+  ["Foco", p.meta.focus],
+  ["Ano", p.meta.year],
 ];
 
 /** One project rendered as an editorial chapter (alternating sides). */
@@ -29,7 +29,7 @@ export function ProjectChapter({ project, index }: ProjectChapterProps) {
       {/* Text column */}
       <div className={cn("min-w-0 lg:col-span-5", reversed && "lg:order-2")}>
         <div className="flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.2em]">
-          <span style={{ color: accent }}>Project {project.id}</span>
+          <span style={{ color: accent }}>Projeto {project.id}</span>
           <span aria-hidden className="h-px w-7 bg-border-primary" />
           <span className="text-text-muted">{project.meta.category}</span>
         </div>
@@ -64,7 +64,7 @@ export function ProjectChapter({ project, index }: ProjectChapterProps) {
           to={href}
           className="group mt-9 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-text-primary"
         >
-          View case study
+          Ver estudo de caso
           <span className="grid size-7 place-items-center border border-border-primary transition-colors duration-300 group-hover:border-text-muted">
             <ArrowUpRight
               size={14}
@@ -78,7 +78,7 @@ export function ProjectChapter({ project, index }: ProjectChapterProps) {
       <div className={cn("lg:col-span-7", reversed && "lg:order-1")}>
         <Link
           to={href}
-          aria-label={`Open ${project.title} case study`}
+          aria-label={`Abrir estudo de caso de ${project.title}`}
           className="group relative block aspect-[4/3] overflow-hidden border border-border-primary bg-background-secondary"
         >
           {/* accent wash */}
@@ -111,7 +111,7 @@ export function ProjectChapter({ project, index }: ProjectChapterProps) {
               {project.title}
             </span>
             <span className="flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-text-muted opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              View project
+              Ver projeto
               <ArrowUpRight size={13} />
             </span>
           </div>

@@ -1,58 +1,58 @@
 import type { ExperienceItem } from "@/types";
 
 /**
- * PLACEHOLDER timeline — structure is final, dates/companies should be
- * confirmed with real history before launch. Most recent first.
+ * Timeline PLACEHOLDER — a estrutura é final, mas datas/empresas devem ser
+ * confirmadas com o histórico real antes do lançamento. Mais recente primeiro.
  */
 export const experience: ExperienceItem[] = [
   {
     id: "cloudysolutions",
-    role: "Founder & Software Engineer",
+    role: "Fundador & Engenheiro de Software",
     company: "CloudySolutions",
-    period: "2025 — Present",
-    location: "Santo André, Brazil",
+    period: "2025 — Atual",
+    location: "Santo André, Brasil",
     current: true,
     summary:
-      "Building products, automation infrastructure and AI agents end to end — from the first webhook to the running system.",
+      "Construindo produtos, infraestrutura de automação e agentes de IA de ponta a ponta — do primeiro webhook ao sistema rodando.",
     responsibilities: [
-      "Architect multi-tenant SaaS and shared automation infrastructure",
-      "Design and ship AI agents and conversational automation",
-      "Own delivery across back end, front end and operations",
+      "Arquitetar SaaS multi-tenant e infraestrutura de automação compartilhada",
+      "Projetar e entregar agentes de IA e automação conversacional",
+      "Ser dono da entrega no back-end, front-end e operações",
     ],
-    technologies: ["Python", "FastAPI", "React", "n8n", "PostgreSQL", "AI Agents"],
+    technologies: ["Python", "FastAPI", "React", "n8n", "PostgreSQL", "Agentes de IA"],
     highlights: [
-      "Launched MecaFlow — WhatsApp-first operations SaaS",
-      "Built a reusable queue + webhook + agent platform",
+      "Lancei o MecaFlow — SaaS de operação com WhatsApp em primeiro lugar",
+      "Construí uma plataforma reutilizável de filas + webhooks + agentes",
     ],
   },
   {
     id: "fullstack-dev",
-    role: "Full-Stack Developer",
-    company: "Independent / Contract",
+    role: "Desenvolvedor Full-Stack",
+    company: "Independente / Contrato",
     period: "2023 — 2025",
-    location: "Remote",
+    location: "Remoto",
     summary:
-      "Delivered web systems and integrations across the stack, with a growing focus on automation and APIs.",
+      "Entreguei sistemas web e integrações em toda a stack, com foco crescente em automação e APIs.",
     responsibilities: [
-      "Build REST APIs and front-end interfaces for client systems",
-      "Integrate third-party services, webhooks and message flows",
-      "Modernize and maintain existing applications",
+      "Construir APIs REST e interfaces front-end para sistemas de clientes",
+      "Integrar serviços de terceiros, webhooks e fluxos de mensagens",
+      "Modernizar e manter aplicações existentes",
     ],
     technologies: ["C#", ".NET", "React", "TypeScript", "SQL Server", "Redis"],
-    highlights: ["Shipped integrations connecting legacy systems to modern APIs"],
+    highlights: ["Entreguei integrações conectando sistemas legados a APIs modernas"],
   },
   {
     id: "systems-dev",
-    role: "Software Developer",
-    company: "Industry / Systems",
+    role: "Desenvolvedor de Software",
+    company: "Indústria / Sistemas",
     period: "2021 — 2023",
-    location: "Santo André, Brazil",
+    location: "Santo André, Brasil",
     summary:
-      "Developed and maintained business systems with C# and .NET, building a foundation in backend and data.",
+      "Desenvolvi e mantive sistemas de negócio com C# e .NET, construindo uma base sólida em back-end e dados.",
     responsibilities: [
-      "Develop business logic and data access with C# / .NET",
-      "Model and query relational databases",
-      "Support and evolve production systems",
+      "Desenvolver lógica de negócio e acesso a dados com C# / .NET",
+      "Modelar e consultar bancos de dados relacionais",
+      "Dar suporte e evoluir sistemas em produção",
     ],
     technologies: ["C#", ".NET", "SQL Server", "MySQL"],
   },

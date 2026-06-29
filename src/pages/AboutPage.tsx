@@ -7,7 +7,7 @@ export function AboutPage() {
   return (
     <>
       <Seo
-        title={`About — ${site.name}`}
+        title={`Sobre — ${site.name}`}
         description={site.about.lead}
       />
       <div className="pt-12" />

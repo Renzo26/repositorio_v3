@@ -66,14 +66,14 @@ export function Hero() {
                 to="/#work"
                 className="font-mono text-xs uppercase tracking-[0.18em]"
               >
-                Explore projects
+                Ver projetos
                 <ArrowDownRight size={15} />
               </AnimatedLink>
               <AnimatedLink
                 to="/about"
                 className="font-mono text-xs uppercase tracking-[0.18em] text-text-secondary hover:text-text-primary"
               >
-                About me
+                Sobre mim
               </AnimatedLink>
               <AnimatedLink
                 href="#"
@@ -114,7 +114,7 @@ export function Hero() {
             {site.availability}
           </span>
           <span className={metaClass}>
-            Local time {localTime} · {site.timezone}
+            Horário local {localTime} · {site.timezone}
           </span>
         </div>
       </Container>

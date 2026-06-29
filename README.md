@@ -1,58 +1,60 @@
-# Arthur Renzo — Portfolio · *Systems in Motion*
+# Arthur Renzo — Portfólio · *Sistemas em Movimento*
 
-Personal portfolio of **Arthur Renzo** — Software Engineer, Full-Stack Developer,
-automation & AI specialist, founder of CloudySolutions.
+Portfólio pessoal de **Arthur Renzo** — Engenheiro de Software, Desenvolvedor
+Full-Stack, especialista em automações e IA, fundador da CloudySolutions.
 
-The concept — **Systems in Motion** — visualizes software systems, APIs,
-automations, databases and AI working as one. Editorial design (70%) meets an
-interactive 3D experience (30%): near-black canvas, large typography, generous
-negative space, and an authorial 3D object — the **System Core** — that runs as
-a persistent narrative element across the page.
+O conceito — **Sistemas em Movimento** ("Systems in Motion") — visualiza
+sistemas de software, APIs, automações, bancos de dados e IA trabalhando como
+um só. Design editorial (70%) encontra uma experiência 3D interativa (30%):
+fundo quase preto, tipografia grande, muito espaço negativo e um objeto 3D
+autoral — o **System Core** — que funciona como elemento narrativo persistente
+ao longo da página.
 
 ## Stack
 
 - **React 19** + **TypeScript** (strict) + **Vite**
-- **React Router** (data router, code-split routes)
+- **React Router** (data router, rotas com code-splitting)
 - **Tailwind CSS v4** (design tokens via `@theme`)
-- **Geist** + **Geist Mono** (self-hosted via `@fontsource-variable`)
-- **lucide-react** for icons
-- _Planned:_ GSAP + ScrollTrigger, Lenis (smooth scroll), Three.js / React Three
-  Fiber / Drei (the System Core)
+- **Geist** + **Geist Mono** (auto-hospedadas via `@fontsource-variable`)
+- **lucide-react** para ícones
+- _Planejados:_ GSAP + ScrollTrigger, Lenis (smooth scroll), Three.js / React
+  Three Fiber / Drei (o System Core)
 
-## Project structure
+## Estrutura do projeto
 
 ```
 src/
   components/   common · layout · navigation · sections · three
-  pages/        Home · Project (case study) · About · Contact · NotFound
+  pages/        Home · Project (estudo de caso) · About · Contact · NotFound
   routes/       router (createBrowserRouter + lazy)
   data/         site · projects · experience · technologies · social · navigation
-  types/        typed content model
+  types/        modelo de conteúdo tipado
   hooks/  utils/  constants/  styles/
 ```
 
-All copy lives in `src/data/*` — adding a project means editing data, not components.
+Todo o conteúdo vive em `src/data/*` — adicionar um projeto é editar dados, não
+componentes.
 
 ## Scripts
 
 ```bash
 npm install
-npm run dev       # start the dev server
-npm run build     # type-check (strict) + production build
-npm run preview   # preview the production build
+npm run dev       # inicia o servidor de desenvolvimento
+npm run build     # type-check (strict) + build de produção
+npm run preview   # pré-visualiza o build de produção
 ```
 
 ## Roadmap
 
-Built in stages, runnable at each checkpoint:
+Construído em etapas, executável a cada checkpoint:
 
 1. **Scaffold + design tokens** ✅
-2. **Static, responsive home + routing** ✅
-3. Lenis + GSAP / ScrollTrigger animations
-4. System Core (Three.js / R3F) with per-section states
-5. Route transitions · command palette · microinteractions
-6. Performance · accessibility · SEO polish
+2. **Home estática e responsiva + roteamento** ✅
+3. Lenis + GSAP / ScrollTrigger (animações)
+4. System Core (Three.js / R3F) com estados por seção
+5. Transições de rota · command palette · microinterações
+6. Performance · acessibilidade · SEO (polimento final)
 
-> Current state: **stages 1–2 complete**. Some content (social URLs, the
-> experience timeline, portrait and project cover images) is placeholder,
-> marked in `src/data/*`, pending real assets.
+> Estado atual: **etapas 1–2 concluídas**. Parte do conteúdo (URLs sociais,
+> timeline de experiência, foto e imagens de capa dos projetos) é placeholder,
+> marcado em `src/data/*`, aguardando os assets reais.

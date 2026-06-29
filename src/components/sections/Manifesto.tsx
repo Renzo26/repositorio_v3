@@ -14,24 +14,24 @@ export function Manifesto() {
           <h2 className="text-balance lg:col-span-9 text-[clamp(1.9rem,4.6vw,3.5rem)] font-medium leading-[1.1] tracking-[-0.02em]">
             <span className="block overflow-hidden">
               <span className="block text-text-muted">
-                Technology should not only work.
+                A tecnologia não deveria apenas funcionar.
               </span>
             </span>
             <span className="block overflow-hidden">
               <span className="block text-text-primary">
-                It should{" "}
-                <span className="text-pastel-lilac">connect</span> people,
-                processes
+                Ela deveria{" "}
+                <span className="text-pastel-lilac">conectar</span> pessoas,
+                processos
               </span>
             </span>
             <span className="block overflow-hidden">
-              <span className="block text-text-primary">and decisions.</span>
+              <span className="block text-text-primary">e decisões.</span>
             </span>
           </h2>
 
           <div className="lg:col-span-3 lg:pt-3">
             <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-text-muted">
-              On the work
+              Sobre o trabalho
             </p>
             <p className="text-pretty mt-4 text-sm leading-relaxed text-text-secondary">
               {site.manifesto.body}

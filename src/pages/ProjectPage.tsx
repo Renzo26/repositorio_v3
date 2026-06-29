@@ -68,13 +68,13 @@ export function ProjectPage() {
       <div className="grid min-h-[70vh] place-items-center px-6 text-center">
         <div>
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-text-muted">
-            404 · Project not found
+            404 · Projeto não encontrado
           </p>
           <AnimatedLink
             to="/#work"
             className="mt-4 font-mono text-xs uppercase tracking-[0.18em]"
           >
-            <ArrowLeft size={14} /> Back to work
+            <ArrowLeft size={14} /> Voltar aos trabalhos
           </AnimatedLink>
         </div>
       </div>
@@ -103,11 +103,11 @@ export function ProjectPage() {
             to="/#work"
             className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-text-secondary hover:text-text-primary"
           >
-            <ArrowLeft size={13} /> Selected Work
+            <ArrowLeft size={13} /> Trabalhos Selecionados
           </AnimatedLink>
 
           <div className="mt-10 flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.2em]">
-            <span style={{ color: accent }}>Project {project.id}</span>
+            <span style={{ color: accent }}>Projeto {project.id}</span>
             <span aria-hidden className="h-px w-7 bg-border-primary" />
             <span className="text-text-muted">
               {project.id} / {projects.length.toString().padStart(2, "0")}
@@ -123,10 +123,10 @@ export function ProjectPage() {
 
           <dl className="mt-10 grid grid-cols-2 gap-y-5 border-t border-border-secondary pt-8 sm:grid-cols-4">
             {[
-              ["Category", project.meta.category],
-              ["Role", project.meta.role],
-              ["Focus", project.meta.focus],
-              ["Year", project.meta.year],
+              ["Categoria", project.meta.category],
+              ["Função", project.meta.role],
+              ["Foco", project.meta.focus],
+              ["Ano", project.meta.year],
             ].map(([label, value]) => (
               <div key={label}>
                 <dt className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-text-muted">
@@ -178,7 +178,7 @@ export function ProjectPage() {
           className="group block border-t border-border-secondary pt-10"
         >
           <span className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-text-muted">
-            Next project — {next.id}
+            Próximo projeto — {next.id}
           </span>
           <div className="mt-4 flex items-center justify-between gap-6">
             <h2 className="text-[clamp(2rem,6vw,4rem)] font-medium leading-none tracking-[-0.02em] text-text-primary transition-colors group-hover:text-white">

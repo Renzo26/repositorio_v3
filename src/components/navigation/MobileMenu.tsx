@@ -62,7 +62,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close menu"
+          aria-label="Fechar menu"
           className="grid size-10 place-items-center border border-border-primary text-text-primary transition-colors hover:border-text-muted"
         >
           <X size={18} />

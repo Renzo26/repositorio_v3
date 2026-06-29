@@ -9,11 +9,11 @@ export function SelectedWork() {
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionLabel index="02" total="06">
-            Selected Work
+            Trabalhos Selecionados
           </SectionLabel>
           <p className="max-w-xs text-pretty text-sm leading-relaxed text-text-secondary">
-            Three systems, read as chapters — products, the platform beneath
-            them, and the ecosystem around them.
+            Três sistemas, lidos como capítulos — produtos, a plataforma por
+            baixo deles e o ecossistema ao redor.
           </p>
         </div>
 

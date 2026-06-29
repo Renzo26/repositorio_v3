@@ -17,11 +17,11 @@ export function Footer() {
             aria-hidden
             className="size-1.5 rounded-full bg-pastel-sage animate-pulse"
           />
-          System status · Online
+          Status do sistema · Online
         </p>
 
         <nav
-          aria-label="Social links"
+          aria-label="Redes sociais"
           className="flex flex-wrap gap-x-6 gap-y-2"
         >
           {socialLinks.map((s) => (

@@ -10,10 +10,10 @@ export function Experience() {
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionLabel index="03" total="06">
-            Experience
+            Experiência
           </SectionLabel>
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-text-muted">
-            {experience.length} positions · most recent first
+            {experience.length} posições · mais recentes primeiro
           </p>
         </div>
 
@@ -55,7 +55,7 @@ export function Experience() {
                 )}
                 {item.current && (
                   <span className="border border-pastel-sage/40 px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-pastel-sage">
-                    Active
+                    Atual
                   </span>
                 )}
               </div>

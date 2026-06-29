@@ -12,7 +12,7 @@ export const socialLinks: SocialLink[] = [
   { label: "LinkedIn", handle: "in/arthurrenzo", href: "#" },
   { label: "Instagram", handle: "@cloudysolutions", href: "#" },
   {
-    label: "Email",
+    label: "E-mail",
     handle: site.email,
     href: `mailto:${site.email}`,
     icon: Mail,

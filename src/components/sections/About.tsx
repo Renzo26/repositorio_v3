@@ -7,7 +7,7 @@ export function About() {
     <section id="about" className="relative py-28 lg:py-36">
       <Container>
         <SectionLabel index="05" total="06">
-          About
+          Sobre
         </SectionLabel>
 
         <div className="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-12 lg:gap-10">
@@ -24,7 +24,7 @@ export function About() {
               />
               <div className="absolute inset-0 grid place-items-center">
                 <span className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-text-muted">
-                  Portrait
+                  Retrato
                 </span>
               </div>
               <span className="absolute bottom-4 left-4 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-text-secondary">
@@ -34,9 +34,9 @@ export function About() {
 
             <dl className="mt-6 flex flex-col gap-3 border-t border-border-secondary pt-6">
               {[
-                ["Location", site.locationShort],
-                ["Studio", `${site.company.name} · ${site.company.role}`],
-                ["Education", site.about.education],
+                ["Localização", site.locationShort],
+                ["Estúdio", `${site.company.name} · ${site.company.role}`],
+                ["Formação", site.about.education],
               ].map(([label, value]) => (
                 <div key={label} className="flex justify-between gap-4">
                   <dt className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-text-muted">
@@ -69,7 +69,7 @@ export function About() {
 
             <div className="mt-10">
               <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-text-muted">
-                Interested in
+                Interesses
               </p>
               <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
                 {site.about.interests.map((interest) => (

@@ -1,9 +1,9 @@
 import type { TechCategory } from "@/types";
 
 /**
- * Technical ecosystem grouped by area. `projects` on each item lists the
- * project slugs it's used in, which drives the hover-to-highlight
- * connections in the Technical Ecosystem section (interactive in Etapa 3+).
+ * Ecossistema técnico agrupado por área. `projects` em cada item lista os
+ * slugs dos projetos em que a tecnologia é usada, o que alimenta as conexões
+ * destacadas no hover da seção Ecossistema Técnico (interativo na Etapa 3+).
  */
 export const techCategories: TechCategory[] = [
   {
@@ -15,7 +15,7 @@ export const techCategories: TechCategory[] = [
       { name: "C#", projects: ["cloudysolutions"] },
       { name: ".NET", projects: ["cloudysolutions"] },
       { name: "FastAPI", projects: ["mecaflow", "automation-platform"] },
-      { name: "REST APIs", projects: ["mecaflow", "automation-platform", "cloudysolutions"] },
+      { name: "APIs REST", projects: ["mecaflow", "automation-platform", "cloudysolutions"] },
     ],
   },
   {
@@ -32,7 +32,7 @@ export const techCategories: TechCategory[] = [
   },
   {
     id: "automation",
-    label: "Automation",
+    label: "Automação",
     accent: "pastel-lilac",
     items: [
       { name: "n8n", projects: ["mecaflow", "automation-platform"] },
@@ -43,7 +43,7 @@ export const techCategories: TechCategory[] = [
   },
   {
     id: "data",
-    label: "Data",
+    label: "Dados",
     accent: "pastel-blue",
     items: [
       { name: "PostgreSQL", projects: ["mecaflow", "cloudysolutions"] },
@@ -54,13 +54,13 @@ export const techCategories: TechCategory[] = [
   },
   {
     id: "ai",
-    label: "Artificial Intelligence",
+    label: "Inteligência Artificial",
     accent: "pastel-lilac",
     items: [
       { name: "OpenAI", projects: ["mecaflow"] },
-      { name: "AI Agents", projects: ["mecaflow", "automation-platform", "cloudysolutions"] },
+      { name: "Agentes de IA", projects: ["mecaflow", "automation-platform", "cloudysolutions"] },
       { name: "RAG", projects: ["mecaflow"] },
-      { name: "Conversational Automation", projects: ["mecaflow", "automation-platform"] },
+      { name: "Automação Conversacional", projects: ["mecaflow", "automation-platform"] },
     ],
   },
 ];

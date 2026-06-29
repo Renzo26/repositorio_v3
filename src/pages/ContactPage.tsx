@@ -6,7 +6,7 @@ export function ContactPage() {
   return (
     <>
       <Seo
-        title={`Contact — ${site.name}`}
+        title={`Contato — ${site.name}`}
         description={site.contact.body}
       />
       <div className="pt-12" />

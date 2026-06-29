@@ -15,11 +15,11 @@ export function TechnicalEcosystem() {
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionLabel index="04" total="06">
-            Technical Ecosystem
+            Ecossistema Técnico
           </SectionLabel>
           <p className="max-w-xs text-pretty text-sm leading-relaxed text-text-secondary">
-            A working map, grouped by area. Each technology connects to the
-            projects it ships in.
+            Um mapa de trabalho, agrupado por área. Cada tecnologia se conecta
+            aos projetos em que ela roda.
           </p>
         </div>
 
@@ -33,7 +33,7 @@ export function TechnicalEcosystem() {
             {site.name}
           </h3>
           <p className="mt-3 font-mono text-[0.7rem] uppercase tracking-[0.28em] text-text-muted">
-            Software Engineering
+            Engenharia de Software
           </p>
         </div>
 
@@ -76,7 +76,7 @@ export function TechnicalEcosystem() {
                       <li key={tech.name}>
                         <button
                           type="button"
-                          title={`Used in: ${related}`}
+                          title={`Usado em: ${related}`}
                           className="group/tech flex w-full items-center justify-between gap-2 py-1.5 text-left text-sm text-text-secondary transition-colors duration-200 hover:text-text-primary"
                           style={
                             { "--tw-accent": accent } as React.CSSProperties

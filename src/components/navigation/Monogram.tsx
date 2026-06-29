@@ -16,7 +16,7 @@ export function Monogram({ className, onClick }: MonogramProps) {
     <Link
       to="/"
       onClick={onClick}
-      aria-label={`${site.name} — home`}
+      aria-label={`${site.name} — início`}
       className={cn(
         "group inline-flex items-center gap-2.5 select-none",
         className,
