@@ -1,8 +1,20 @@
-import type { ElementType, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { cn } from "@/utils/cn";
 
+/** HTML tags allowed for the container (kept narrow to avoid the global
+ * three.js JSX augmentation leaking in via R3F). */
+type ContainerTag =
+  | "div"
+  | "section"
+  | "header"
+  | "footer"
+  | "nav"
+  | "main"
+  | "article"
+  | "aside";
+
 interface ContainerProps {
-  as?: ElementType;
+  as?: ContainerTag;
   className?: string;
   children: ReactNode;
   /** Wider gutter variant for full-bleed editorial sections. */

@@ -10,7 +10,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border-secondary py-10">
+    <footer className="relative z-10 border-t border-border-secondary bg-background-primary py-10">
       <Container className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <p className={`${metaClass} flex items-center gap-2`}>
           <span

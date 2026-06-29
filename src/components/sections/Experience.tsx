@@ -3,6 +3,7 @@ import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { TechTag } from "@/components/common/TechTag";
 import { useGsap } from "@/hooks/useGsap";
+import { useCoreSection } from "@/hooks/useCoreSection";
 import { revealBatch } from "@/animations/sectionReveals";
 import { experience } from "@/data/experience";
 import { cn } from "@/utils/cn";
@@ -10,6 +11,7 @@ import { cn } from "@/utils/cn";
 export function Experience() {
   const root = useRef<HTMLElement>(null);
 
+  useCoreSection(root, "experience");
   useGsap(root, (scope) => {
     revealBatch(scope, { start: "top 80%", stagger: 0.12 });
   });

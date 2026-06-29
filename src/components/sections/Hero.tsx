@@ -5,6 +5,8 @@ import { AnimatedLink } from "@/components/common/AnimatedLink";
 import { SystemCorePlaceholder } from "@/components/three/SystemCorePlaceholder";
 import { useLocalTime } from "@/hooks/useLocalTime";
 import { useGsap } from "@/hooks/useGsap";
+import { useCoreSection } from "@/hooks/useCoreSection";
+import { useSystemCore } from "@/contexts/SystemCoreContext";
 import { playHeroIntro } from "@/animations/heroAnimations";
 import { site } from "@/data/site";
 
@@ -14,7 +16,9 @@ const metaClass =
 export function Hero() {
   const localTime = useLocalTime();
   const root = useRef<HTMLElement>(null);
+  const { enabled } = useSystemCore();
 
+  useCoreSection(root, "hero");
   useGsap(root, (scope) => {
     playHeroIntro(scope);
   });
@@ -119,13 +123,17 @@ export function Hero() {
             </div>
           </div>
 
-          {/* System Core */}
-          <div className="relative lg:col-span-5">
-            <div className="mx-auto w-[min(82%,30rem)] lg:w-full lg:scale-110 lg:translate-x-4">
-              <div data-hero="core">
+          {/* System Core — 3D floats over this column (global canvas).
+              When 3D is off, show the SVG fallback inline. */}
+          <div className="relative min-h-[16rem] lg:col-span-5">
+            {!enabled && (
+              <div
+                data-hero="core"
+                className="mx-auto w-[min(82%,30rem)] lg:w-full lg:scale-110 lg:translate-x-4"
+              >
                 <SystemCorePlaceholder accent="pastel-lilac" />
               </div>
-            </div>
+            )}
           </div>
         </div>
       </Container>

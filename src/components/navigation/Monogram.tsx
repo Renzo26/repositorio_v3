@@ -1,6 +1,8 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/utils/cn";
 import { site } from "@/data/site";
+import { useSystemCore } from "@/contexts/SystemCoreContext";
 
 interface MonogramProps {
   className?: string;
@@ -8,14 +10,29 @@ interface MonogramProps {
 }
 
 /**
- * "AR" monogram — links home. Will also be the EXPLODED VIEW easter-egg
- * trigger once the 3D Core lands (Etapa 5); the onClick hook is ready.
+ * "AR" monogram — links home. Three quick clicks toggle the EXPLODED VIEW
+ * easter egg (only while the 3D core is active).
  */
 export function Monogram({ className, onClick }: MonogramProps) {
+  const { enabled, exploded, toggleExploded } = useSystemCore();
+  const taps = useRef<number[]>([]);
+
+  const handleClick = () => {
+    onClick?.();
+    if (!enabled) return;
+    const now = Date.now();
+    taps.current = taps.current.filter((t) => now - t < 1200);
+    taps.current.push(now);
+    if (taps.current.length >= 3) {
+      taps.current = [];
+      toggleExploded();
+    }
+  };
+
   return (
     <Link
       to="/"
-      onClick={onClick}
+      onClick={handleClick}
       aria-label={`${site.name} — início`}
       className={cn(
         "group inline-flex items-center gap-2.5 select-none",
@@ -26,7 +43,10 @@ export function Monogram({ className, onClick }: MonogramProps) {
         {site.monogram}
         <span
           aria-hidden
-          className="absolute -right-1 -top-1 size-1.5 rounded-full bg-pastel-lilac"
+          className={cn(
+            "absolute -right-1 -top-1 size-1.5 rounded-full transition-colors",
+            exploded ? "bg-pastel-peach" : "bg-pastel-lilac",
+          )}
         />
       </span>
     </Link>

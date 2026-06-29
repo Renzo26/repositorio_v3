@@ -2,12 +2,14 @@ import { useRef } from "react";
 import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { useGsap } from "@/hooks/useGsap";
+import { useCoreSection } from "@/hooks/useCoreSection";
 import { revealBatch } from "@/animations/sectionReveals";
 import { site } from "@/data/site";
 
 export function About() {
   const root = useRef<HTMLElement>(null);
 
+  useCoreSection(root, "about");
   useGsap(root, (scope) => {
     revealBatch(scope, { start: "top 80%" });
   });

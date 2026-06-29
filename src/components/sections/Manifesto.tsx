@@ -2,12 +2,14 @@ import { useRef } from "react";
 import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { useGsap } from "@/hooks/useGsap";
+import { useCoreSection } from "@/hooks/useCoreSection";
 import { maskReveal, revealBatch } from "@/animations/sectionReveals";
 import { site } from "@/data/site";
 
 export function Manifesto() {
   const root = useRef<HTMLElement>(null);
 
+  useCoreSection(root, "manifesto");
   useGsap(root, (scope) => {
     maskReveal(scope, "[data-line]", { start: "top 75%" });
     revealBatch(scope, { start: "top 75%" });

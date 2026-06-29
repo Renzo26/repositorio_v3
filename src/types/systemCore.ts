@@ -12,6 +12,8 @@ export type SystemCoreState =
   | "automation"
   | "cloudy"
   | "experience"
+  | "ecosystem"
+  | "about"
   | "contact";
 
 export type AccentColor =

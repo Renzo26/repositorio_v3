@@ -9,6 +9,7 @@ import { TechTag } from "@/components/common/TechTag";
 import { AnimatedLink } from "@/components/common/AnimatedLink";
 import { SystemCorePlaceholder } from "@/components/three/SystemCorePlaceholder";
 import { useGsap } from "@/hooks/useGsap";
+import { useCoreSection } from "@/hooks/useCoreSection";
 import { revealBatch } from "@/animations/sectionReveals";
 import {
   projects,
@@ -77,6 +78,7 @@ export function ProjectPage() {
     },
     [slug],
   );
+  useCoreSection(root, project?.systemState ?? "hero");
 
   if (!project) {
     return (

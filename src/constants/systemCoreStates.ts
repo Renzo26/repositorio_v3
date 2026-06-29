@@ -19,6 +19,8 @@ export const SYSTEM_CORE_CONFIG: Record<SystemCoreState, SystemCoreConfig> = {
   automation: { accent: "pastel-lilac", intensity: 1, label: "Automation" },
   cloudy: { accent: "pastel-blue", intensity: 0.85, label: "CloudySolutions" },
   experience: { accent: "pastel-peach", intensity: 0.7, label: "Experience" },
+  ecosystem: { accent: "pastel-lilac", intensity: 0.8, label: "Ecosystem" },
+  about: { accent: "pastel-peach", intensity: 0.6, label: "About" },
   contact: { accent: "pastel-lilac", intensity: 0.95, label: "Contact" },
 };
 

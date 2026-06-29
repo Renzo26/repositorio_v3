@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { useGsap } from "@/hooks/useGsap";
+import { useCoreSection } from "@/hooks/useCoreSection";
 import { revealBatch } from "@/animations/sectionReveals";
 import { techCategories } from "@/data/technologies";
 import { projects } from "@/data/projects";
@@ -15,6 +16,7 @@ const titleBySlug: Record<string, string> = Object.fromEntries(
 export function TechnicalEcosystem() {
   const root = useRef<HTMLElement>(null);
 
+  useCoreSection(root, "ecosystem");
   useGsap(root, (scope) => {
     revealBatch(scope, { start: "top 80%" });
   });

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
+import { SystemCoreLayer } from "@/components/three/SystemCoreLayer";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { Footer } from "./Footer";
 
@@ -27,9 +28,11 @@ export function AppLayout() {
         Pular para o conteúdo
       </a>
 
+      <SystemCoreLayer />
+
       <Navbar />
 
-      <main id="main" className="flex-1">
+      <main id="main" className="relative z-10 flex-1">
         <Suspense fallback={<RouteFallback />}>
           <Outlet />
         </Suspense>

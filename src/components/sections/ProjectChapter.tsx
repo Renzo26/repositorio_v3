@@ -1,9 +1,11 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/types";
 import { ACCENT_VAR } from "@/types";
 import { TechTag } from "@/components/common/TechTag";
 import { SystemCorePlaceholder } from "@/components/three/SystemCorePlaceholder";
+import { useCoreSection } from "@/hooks/useCoreSection";
 import { cn } from "@/utils/cn";
 
 interface ProjectChapterProps {
@@ -23,9 +25,15 @@ export function ProjectChapter({ project, index }: ProjectChapterProps) {
   const accent = ACCENT_VAR[project.accentColor];
   const reversed = index % 2 === 1;
   const href = `/projects/${project.slug}`;
+  const root = useRef<HTMLElement>(null);
+
+  useCoreSection(root, project.systemState);
 
   return (
-    <article className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+    <article
+      ref={root}
+      className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12"
+    >
       {/* Text column */}
       <div className={cn("min-w-0 lg:col-span-5", reversed && "lg:order-2")}>
         <div

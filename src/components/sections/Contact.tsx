@@ -6,13 +6,17 @@ import { Button } from "@/components/common/Button";
 import { AnimatedLink } from "@/components/common/AnimatedLink";
 import { SystemCorePlaceholder } from "@/components/three/SystemCorePlaceholder";
 import { useGsap } from "@/hooks/useGsap";
+import { useCoreSection } from "@/hooks/useCoreSection";
+import { useSystemCore } from "@/contexts/SystemCoreContext";
 import { maskReveal, revealBatch } from "@/animations/sectionReveals";
 import { socialLinks } from "@/data/socialLinks";
 import { site } from "@/data/site";
 
 export function Contact() {
   const root = useRef<HTMLElement>(null);
+  const { enabled } = useSystemCore();
 
+  useCoreSection(root, "contact");
   useGsap(root, (scope) => {
     maskReveal(scope, "[data-line]", { start: "top 78%" });
     revealBatch(scope, { start: "top 80%" });
@@ -24,16 +28,19 @@ export function Contact() {
       id="contact"
       className="relative overflow-hidden py-32 lg:py-48"
     >
-      {/* Core returns to the center of the composition */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 grid place-items-center"
-      >
-        <SystemCorePlaceholder
-          accent="pastel-lilac"
-          className="w-[min(120%,52rem)] opacity-[0.16]"
-        />
-      </div>
+      {/* Core returns to the center of the composition.
+          With 3D on, the global canvas core centers here instead. */}
+      {!enabled && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 grid place-items-center"
+        >
+          <SystemCorePlaceholder
+            accent="pastel-lilac"
+            className="w-[min(120%,52rem)] opacity-[0.16]"
+          />
+        </div>
+      )}
 
       <Container className="relative z-10">
         <div data-reveal>
