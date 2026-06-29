@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Design tokens — "Systems in Motion"
+ * Defined inside @theme so Tailwind generates utilities:
+ *   bg-background-primary · text-text-secondary · border-border-primary
+ *   text-pastel-sage · font-mono · etc.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-background-primary: #070707;
+  --color-background-secondary: #0d0d0d;
+  --color-surface-primary: #121212;
+  --color-surface-secondary: #171717;
+
+  --color-border-primary: #292929;
+  --color-border-secondary: #1f1f1f;
+
+  --color-text-primary: #f1eee8;
+  --color-text-secondary: #aaa69f;
+  --color-text-muted: #706d68;
+
+  --color-pastel-lilac: #b9aae8;
+  --color-pastel-sage: #a9c3b2;
+  --color-pastel-peach: #e2b3a6;
+  --color-pastel-blue: #a9bed1;
+
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Editorial container width */
+  --container-page: 1440px;
+
+  /* Easing used across the app (GSAP mirrors these later) */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Ambient motion for the System Core placeholder (Etapa 4 swaps in WebGL) */
+  --animate-spin-slow: spin-slow 70s linear infinite;
+  --animate-spin-reverse: spin-slow 95s linear infinite reverse;
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-drift: drift 14s ease-in-out infinite;
+  --animate-pulse-node: pulse-node 4s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(7px, -7px);
+  }
+}
+@keyframes pulse-node {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Base — kept INSIDE @layer base. A non-layered reset would beat the
+ * utilities and silently break mx-auto / px-* (known Tailwind v4 trap).
+ * Preflight already handles box-sizing + margin reset, so we add little.
+ * ------------------------------------------------------------------ */
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-background-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-pastel-lilac);
+    color: #0b0b0b;
+  }
+
+  /* Visible keyboard focus, never on mouse interaction */
+  :focus-visible {
+    outline: 2px solid var(--color-pastel-lilac);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Monospace metadata: tabular figures + slight tracking */
+  .font-mono,
+  code,
+  kbd {
+    font-feature-settings: "tnum", "zero";
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Small authorial helpers (technical grid, hairline rules, grain).
+ * Kept as utilities so they compose with Tailwind classes.
+ * ------------------------------------------------------------------ */
+@layer utilities {
+  /* Faint blueprint grid for technical backgrounds */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--color-border-secondary) 60%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-border-secondary) 60%, transparent) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  /* Soft radial glow used behind the hero / contact core */
+  .bg-radial-glow {
+    background: radial-gradient(
+      60% 60% at 50% 40%,
+      color-mix(in oklab, var(--color-pastel-lilac) 12%, transparent),
+      transparent 70%
+    );
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Subtle film grain via SVG noise, very low opacity */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
