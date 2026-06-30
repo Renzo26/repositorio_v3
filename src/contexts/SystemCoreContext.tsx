@@ -7,7 +7,6 @@ import {
 } from "react";
 import type { ReactNode } from "react";
 import type { SystemCoreState } from "@/types";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { MEDIA } from "@/constants/breakpoints";
 import { DEFAULT_SYSTEM_STATE } from "@/constants/systemCoreStates";
@@ -43,12 +42,10 @@ export function SystemCoreProvider({ children }: { children: ReactNode }) {
   const [exploded, setExploded] = useState(false);
   const [failed, setFailed] = useState(false);
 
-  const reduced = usePrefersReducedMotion();
   const isDesktop = useMediaQuery(MEDIA.desktop);
   const [webgl] = useState(detectWebGL);
 
-  // 3D runs only on capable desktops that allow motion and haven't errored.
-  const enabled = webgl && !reduced && isDesktop && !failed;
+  const enabled = webgl && isDesktop && !failed;
 
   const toggleExploded = useCallback(() => setExploded((e) => !e), []);
   const report3DFailure = useCallback(() => setFailed(true), []);

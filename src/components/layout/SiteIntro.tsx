@@ -2,7 +2,6 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "@/animations/gsap";
 import { getLenisInstance } from "@/animations/lenisInstance";
 import { completeIntro } from "@/animations/introGate";
-import { prefersReducedMotion } from "@/utils/motion";
 import { site } from "@/data/site";
 
 const BOOT_LINES = [
@@ -25,11 +24,6 @@ export function SiteIntro() {
   const [done, setDone] = useState(false);
 
   useLayoutEffect(() => {
-    if (prefersReducedMotion()) {
-      completeIntro();
-      setDone(true);
-      return;
-    }
     const el = root.current;
     if (!el) {
       completeIntro();

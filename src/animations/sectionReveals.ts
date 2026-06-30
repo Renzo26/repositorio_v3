@@ -1,5 +1,4 @@
 import { gsap, ScrollTrigger, SplitText } from "./gsap";
-import { prefersReducedMotion } from "@/utils/motion";
 
 interface RevealOptions {
   y?: number;
@@ -10,22 +9,12 @@ interface RevealOptions {
 /**
  * Fade-and-rise every `[data-reveal]` inside `scope` as it scrolls in.
  * Used for non-text blocks (labels, tags, links, media, meta lists).
- * Under reduced-motion this becomes a short opacity-only fade (no movement).
  */
 export function revealBatch(scope: HTMLElement, opts: RevealOptions = {}): void {
   const items = gsap.utils.toArray<HTMLElement>(
     scope.querySelectorAll("[data-reveal]"),
   );
   if (!items.length) return;
-
-  if (prefersReducedMotion()) {
-    // No motion at all — show the final state directly. Tying this to a
-    // ScrollTrigger risked items getting stuck at opacity:0 forever if the
-    // trigger's start position was never satisfied (seen on some desktop
-    // viewport sizes).
-    gsap.set(items, { opacity: 1, y: 0 });
-    return;
-  }
 
   const y = opts.y ?? 26;
   gsap.set(items, { opacity: 0, y });
@@ -61,9 +50,6 @@ const SCRUB_TRIGGER = { start: "top 85%", end: "top 45%", scrub: 0.8 } as const;
  * Both are scrubbed to the scroll. Returns a cleanup that reverts every
  * SplitText instance (which also reverts the animations / ScrollTriggers it
  * created via `onSplit`), restoring the original DOM on unmount.
- *
- * Under reduced-motion we skip splitting entirely and do one cheap opacity
- * fade — no transforms, no clip masks, no per-line work.
  */
 export function revealText(scope: HTMLElement): () => void {
   const titles = gsap.utils.toArray<HTMLElement>(
@@ -72,15 +58,6 @@ export function revealText(scope: HTMLElement): () => void {
   const paragraphs = gsap.utils.toArray<HTMLElement>(
     scope.querySelectorAll("[data-reveal-lines]"),
   );
-
-  if (prefersReducedMotion()) {
-    // Same rationale as revealBatch: show elements immediately rather than
-    // relying on a ScrollTrigger that can fail to fire on certain viewport
-    // sizes, leaving text permanently invisible.
-    const all = [...titles, ...paragraphs];
-    if (all.length) gsap.set(all, { opacity: 1, clipPath: "none" });
-    return () => {};
-  }
 
   const splits: SplitText[] = [];
 
