@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { useSystemCore } from "@/contexts/SystemCoreContext";
-import { SystemCore } from "./SystemCore";
+import { GltfCore } from "./GltfCore";
 
 /**
  * Global, transparent WebGL canvas. Lazy-loaded (default export) so Three.js
@@ -18,7 +18,7 @@ export default function SystemCoreCanvas() {
       <ambientLight intensity={0.55} />
       <directionalLight position={[4, 5, 6]} intensity={1.3} color={0xfff3e6} />
       <directionalLight position={[-5, -2, -4]} intensity={0.45} color={0xbfd0ff} />
-      <SystemCore state={state} exploded={exploded} />
+      <GltfCore state={state} exploded={exploded} />
     </Canvas>
   );
 }
