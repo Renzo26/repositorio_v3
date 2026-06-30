@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { SystemCoreLayer } from "@/components/three/SystemCoreLayer";
+import { SiteIntro } from "./SiteIntro";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { Footer } from "./Footer";
 
@@ -21,6 +22,8 @@ export function AppLayout() {
 
   return (
     <div className="relative flex min-h-screen flex-col">
+      <SiteIntro />
+
       <a
         href="#main"
         className="sr-only rounded-sm bg-text-primary px-4 py-2 font-mono text-xs uppercase tracking-widest text-background-primary focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100]"

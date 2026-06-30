@@ -2,12 +2,20 @@ import { gsap } from "./gsap";
 import { prefersReducedMotion } from "@/utils/motion";
 
 /**
- * Hero entrance — plays once on mount.
+ * Hero entrance.
  * The headline reveals by mask (each line lives in an overflow-hidden wrapper),
  * then the supporting blocks stagger in and the System Core fades up.
  * Under reduced-motion it degrades to a single short opacity fade.
+ *
+ * With `autoplay: false` the animation is built paused — its initial (hidden)
+ * state renders immediately, so the Hero never flashes before the site intro
+ * overlay lifts and calls `.play()`.
  */
-export function playHeroIntro(scope: HTMLElement): gsap.core.Animation {
+export function playHeroIntro(
+  scope: HTMLElement,
+  opts: { autoplay?: boolean } = {},
+): gsap.core.Animation {
+  const paused = opts.autoplay === false;
   const q = gsap.utils.selector(scope);
 
   if (prefersReducedMotion()) {
@@ -16,10 +24,11 @@ export function playHeroIntro(scope: HTMLElement): gsap.core.Animation {
       duration: 0.5,
       ease: "power1.out",
       stagger: 0.04,
+      paused,
     });
   }
 
-  const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
+  const tl = gsap.timeline({ defaults: { ease: "expo.out" }, paused });
 
   tl.from(q("[data-hero-line]"), { yPercent: 120, duration: 1.1, stagger: 0.12 }, 0.15)
     .from(q('[data-hero="meta"]'), { y: 18, opacity: 0, duration: 0.8 }, 0.15)

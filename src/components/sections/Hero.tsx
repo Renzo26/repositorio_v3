@@ -8,6 +8,7 @@ import { useGsap } from "@/hooks/useGsap";
 import { useCoreSection } from "@/hooks/useCoreSection";
 import { useSystemCore } from "@/contexts/SystemCoreContext";
 import { playHeroIntro } from "@/animations/heroAnimations";
+import { whenIntroDone } from "@/animations/introGate";
 import { site } from "@/data/site";
 
 const metaClass =
@@ -20,7 +21,16 @@ export function Hero() {
 
   useCoreSection(root, "hero");
   useGsap(root, (scope) => {
-    playHeroIntro(scope);
+    // Built paused (hidden state applied now); the site intro overlay plays it
+    // as its curtain lifts. If the intro is skipped, the gate fires at once.
+    const intro = playHeroIntro(scope, { autoplay: false });
+    let cancelled = false;
+    whenIntroDone(() => {
+      if (!cancelled) intro.play();
+    });
+    return () => {
+      cancelled = true;
+    };
   });
 
   return (

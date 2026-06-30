@@ -172,23 +172,32 @@ export function SystemCore({ state, exploded }: SystemCoreProps) {
       g.rotation.x = lerp(g.rotation.x, tx, Math.min(1, dt * 2.6));
     }
 
+    // `scatter` → 0 when fully gathered. Everything that breaks the grid
+    // (jitter, outward push, detach offset, bob, tumble) is scaled by it, so a
+    // gathered Core snaps into a clean, axis-aligned 3×3×3 cube.
     const scatter = (1 - a.gather) + a.explode * 0.9;
     cells.forEach((c, i) => {
       const mesh = meshRefs.current[i];
       if (!mesh) return;
 
-      const bob = Math.sin(t * 0.85 + c.phase) * c.amp;
-      const base = c.detached ? 0.28 : 0;
+      const bob = Math.sin(t * 0.85 + c.phase) * c.amp * scatter;
+      const detachOut = c.detached ? 0.28 : 0;
 
       const p = tmp.current;
-      p.copy(c.base).add(c.jitter);
-      p.addScaledVector(c.out, base + c.spread * scatter);
-      p.y += bob + (c.detached ? bob * 0.6 : 0);
+      p.copy(c.base);
+      p.addScaledVector(c.jitter, scatter);
+      p.addScaledVector(c.out, (detachOut + c.spread) * scatter);
+      p.y += bob;
       mesh.position.copy(p);
 
       if (c.detached) {
-        mesh.rotation.x = t * 0.18 + c.phase;
-        mesh.rotation.y = t * 0.14 + c.phase;
+        // Tumble only while scattered; ease back to axis-aligned as it gathers.
+        // (Scaling an ever-growing angle by `scatter` made gathered cubes jitter.)
+        mesh.rotation.x += dt * 0.18 * scatter;
+        mesh.rotation.y += dt * 0.14 * scatter;
+        const align = Math.min(1, dt * 3) * (1 - Math.min(1, scatter));
+        mesh.rotation.x = lerp(mesh.rotation.x, 0, align);
+        mesh.rotation.y = lerp(mesh.rotation.y, 0, align);
       }
     });
   });
