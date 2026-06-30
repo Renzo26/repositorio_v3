@@ -3,7 +3,7 @@ import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { useGsap } from "@/hooks/useGsap";
 import { useCoreSection } from "@/hooks/useCoreSection";
-import { revealBatch } from "@/animations/sectionReveals";
+import { revealBatch, revealText } from "@/animations/sectionReveals";
 import { techCategories } from "@/data/technologies";
 import { projects } from "@/data/projects";
 import { ACCENT_VAR } from "@/types";
@@ -19,6 +19,7 @@ export function TechnicalEcosystem() {
   useCoreSection(root, "ecosystem");
   useGsap(root, (scope) => {
     revealBatch(scope, { start: "top 80%" });
+    return revealText(scope);
   });
 
   return (
@@ -31,7 +32,7 @@ export function TechnicalEcosystem() {
             </SectionLabel>
           </div>
           <p
-            data-reveal
+            data-reveal-lines
             className="max-w-xs text-pretty text-sm leading-relaxed text-text-secondary"
           >
             Um mapa de trabalho, agrupado por área. Cada tecnologia se conecta
@@ -40,18 +41,22 @@ export function TechnicalEcosystem() {
         </div>
 
         {/* Center identity */}
-        <div
-          data-reveal
-          className="mt-16 flex flex-col items-center text-center lg:mt-20"
-        >
+        <div className="mt-16 flex flex-col items-center text-center lg:mt-20">
           <span
+            data-reveal
             aria-hidden
             className="mb-5 size-2 rounded-full bg-pastel-lilac"
           />
-          <h3 className="text-[clamp(1.8rem,4vw,3rem)] font-medium leading-none tracking-[-0.02em] text-text-primary">
+          <h3
+            data-reveal-title
+            className="text-[clamp(1.8rem,4vw,3rem)] font-medium leading-none tracking-[-0.02em] text-text-primary"
+          >
             {site.name}
           </h3>
-          <p className="mt-3 font-mono text-[0.7rem] uppercase tracking-[0.28em] text-text-muted">
+          <p
+            data-reveal
+            className="mt-3 font-mono text-[0.7rem] uppercase tracking-[0.28em] text-text-muted"
+          >
             Engenharia de Software
           </p>
         </div>

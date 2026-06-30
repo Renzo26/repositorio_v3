@@ -46,13 +46,13 @@ export function ProjectChapter({ project, index }: ProjectChapterProps) {
         </div>
 
         <h3
-          data-reveal
+          data-reveal-title
           className="mt-5 text-[clamp(2rem,4vw,3rem)] font-medium leading-[1] tracking-[-0.02em] text-text-primary"
         >
           {project.title}
         </h3>
         <p
-          data-reveal
+          data-reveal-lines
           className="text-pretty mt-4 max-w-md text-base leading-relaxed text-text-secondary"
         >
           {project.tagline}

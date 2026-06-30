@@ -3,7 +3,7 @@ import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { useGsap } from "@/hooks/useGsap";
 import { useCoreSection } from "@/hooks/useCoreSection";
-import { revealBatch } from "@/animations/sectionReveals";
+import { revealBatch, revealText } from "@/animations/sectionReveals";
 import { site } from "@/data/site";
 
 export function About() {
@@ -12,6 +12,7 @@ export function About() {
   useCoreSection(root, "about");
   useGsap(root, (scope) => {
     revealBatch(scope, { start: "top 80%" });
+    return revealText(scope);
   });
 
   return (
@@ -64,8 +65,11 @@ export function About() {
           </div>
 
           {/* Editorial text */}
-          <div data-reveal className="lg:col-span-7 lg:col-start-6">
-            <p className="text-balance text-[clamp(1.4rem,2.6vw,2.1rem)] font-medium leading-[1.2] tracking-[-0.01em] text-text-primary">
+          <div className="lg:col-span-7 lg:col-start-6">
+            <p
+              data-reveal-lines
+              className="text-balance text-[clamp(1.4rem,2.6vw,2.1rem)] font-medium leading-[1.2] tracking-[-0.01em] text-text-primary"
+            >
               {site.about.lead}
             </p>
 
@@ -73,6 +77,7 @@ export function About() {
               {site.about.paragraphs.map((p, i) => (
                 <p
                   key={i}
+                  data-reveal-lines
                   className="text-pretty text-base leading-relaxed text-text-secondary"
                 >
                   {p}
@@ -80,7 +85,7 @@ export function About() {
               ))}
             </div>
 
-            <div className="mt-10">
+            <div data-reveal className="mt-10">
               <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-text-muted">
                 Interesses
               </p>

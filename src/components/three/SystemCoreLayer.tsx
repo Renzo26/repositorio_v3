@@ -6,7 +6,7 @@ const SystemCoreCanvas = lazy(() => import("./SystemCoreCanvas"));
 
 /**
  * Fixed, behind-content layer that hosts the global 3D core. Renders nothing
- * when the core is disabled (mobile / no-WebGL / reduced-motion) — sections
+ * when the core is disabled (mobile / no-WebGL / reduced-motion) - sections
  * show their SVG fallback instead. Any 3D error degrades to that fallback.
  */
 export function SystemCoreLayer() {
@@ -15,7 +15,12 @@ export function SystemCoreLayer() {
 
   return (
     <>
-      <div className="pointer-events-none fixed inset-0 z-0" aria-hidden>
+      {/* Pinned to the hero viewport only (scrolls away with it). The core
+          no longer travels through the sections - see useCoreSection. */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-screen"
+        aria-hidden
+      >
         <CanvasErrorBoundary onError={report3DFailure}>
           <Suspense fallback={null}>
             <SystemCoreCanvas />

@@ -9,7 +9,6 @@ interface SystemCorePlaceholderProps {
   still?: boolean;
 }
 
-/** Modules orbiting the core — positions chosen for an asymmetric balance. */
 const NODES = [
   { x: 200, y: 60, r: 9, filled: true },
   { x: 332, y: 150, r: 7, filled: false },
@@ -20,9 +19,8 @@ const NODES = [
 ] as const;
 
 /**
- * Static, abstract representation of the System Core — nodes, connectors
- * and orbiting rings. Used now as the hero centerpiece and later as the
- * no-WebGL / reduced-motion fallback for the real 3D object (Etapa 4).
+ * Static, abstract representation of the System Core - nodes, connectors
+ * and orbiting rings. Used as the no-WebGL / reduced-motion fallback.
  */
 export function SystemCorePlaceholder({
   accent = "pastel-lilac",
@@ -40,7 +38,6 @@ export function SystemCorePlaceholder({
       )}
       aria-hidden
     >
-      {/* Ambient glow */}
       <div
         className="absolute inset-[12%] rounded-full blur-3xl opacity-40"
         style={{
@@ -53,7 +50,6 @@ export function SystemCorePlaceholder({
         fill="none"
         className="relative z-10 h-full w-full overflow-visible"
       >
-        {/* Orbiting rings */}
         <g
           className={cn(!still && "animate-spin-slow")}
           style={{ transformBox: "fill-box", transformOrigin: "center" }}
@@ -91,14 +87,12 @@ export function SystemCorePlaceholder({
           />
         </g>
 
-        {/* Connectors core → modules */}
         <g stroke={color} strokeWidth="1" opacity="0.55">
           {NODES.map((n, i) => (
             <line key={i} x1="200" y1="200" x2={n.x} y2={n.y} />
           ))}
         </g>
 
-        {/* Module nodes */}
         <g>
           {NODES.map((n, i) => (
             <g
@@ -121,7 +115,6 @@ export function SystemCorePlaceholder({
           ))}
         </g>
 
-        {/* Core module */}
         <g style={{ transformBox: "fill-box", transformOrigin: "center" }}>
           <rect
             x="166"

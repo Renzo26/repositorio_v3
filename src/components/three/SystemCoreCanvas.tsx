@@ -4,7 +4,7 @@ import { SystemCore } from "./SystemCore";
 
 /**
  * Global, transparent WebGL canvas. Lazy-loaded (default export) so Three.js
- * stays out of the main bundle. No shadows, no post-processing, DPR ≤ 1.5.
+ * stays out of the main bundle. No shadows, no post-processing, DPR <= 1.5.
  */
 export default function SystemCoreCanvas() {
   const { state, exploded } = useSystemCore();

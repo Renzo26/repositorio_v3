@@ -1,4 +1,4 @@
-import { gsap, ScrollTrigger } from "./gsap";
+import { gsap, ScrollTrigger, SplitText } from "./gsap";
 import { prefersReducedMotion } from "@/utils/motion";
 
 interface RevealOptions {
@@ -9,6 +9,7 @@ interface RevealOptions {
 
 /**
  * Fade-and-rise every `[data-reveal]` inside `scope` as it scrolls in.
+ * Used for non-text blocks (labels, tags, links, media, meta lists).
  * Under reduced-motion this becomes a short opacity-only fade (no movement).
  */
 export function revealBatch(scope: HTMLElement, opts: RevealOptions = {}): void {
@@ -51,35 +52,89 @@ export function revealBatch(scope: HTMLElement, opts: RevealOptions = {}): void 
   });
 }
 
+// Scroll window shared by every text reveal — progress is tied to scroll
+// position between these two points (scrub) so it reverses naturally upward.
+const SCRUB_TRIGGER = { start: "top 85%", end: "top 45%", scrub: 0.8 } as const;
+
 /**
- * Masked line reveal for editorial headings. Each line must sit inside an
- * `overflow-hidden` wrapper; `selector` targets the inner moving element.
- * Under reduced-motion it falls back to a short opacity fade (no slide).
+ * Line-by-line entrance for the section texts, driven by SplitText so the
+ * line breaks recalculate on resize / font load. Two treatments:
+ *
+ *  - `[data-reveal-title]`  big headings — each line is masked (overflow
+ *    hidden) and slides up from `yPercent: 100` to `0` with a short stagger.
+ *  - `[data-reveal-lines]`  paragraphs — each line is wiped open left→right
+ *    via `clip-path: inset(...)` (no opacity-only, no horizontal shift, no
+ *    layout change).
+ *
+ * Both are scrubbed to the scroll. Returns a cleanup that reverts every
+ * SplitText instance (which also reverts the animations / ScrollTriggers it
+ * created via `onSplit`), restoring the original DOM on unmount.
+ *
+ * Under reduced-motion we skip splitting entirely and do one cheap opacity
+ * fade — no transforms, no clip masks, no per-line work.
  */
-export function maskReveal(
-  scope: HTMLElement,
-  selector: string,
-  opts: { start?: string; stagger?: number } = {},
-): void {
-  const lines = scope.querySelectorAll<HTMLElement>(selector);
-  if (!lines.length) return;
+export function revealText(scope: HTMLElement): () => void {
+  const titles = gsap.utils.toArray<HTMLElement>(
+    scope.querySelectorAll("[data-reveal-title]"),
+  );
+  const paragraphs = gsap.utils.toArray<HTMLElement>(
+    scope.querySelectorAll("[data-reveal-lines]"),
+  );
 
   if (prefersReducedMotion()) {
-    gsap.from(lines, {
-      opacity: 0,
-      duration: 0.5,
-      ease: "power1.out",
-      stagger: opts.stagger ?? 0.06,
-      scrollTrigger: { trigger: scope, start: opts.start ?? "top 80%" },
-    });
-    return;
+    const all = [...titles, ...paragraphs];
+    if (all.length) {
+      gsap.from(all, {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power1.out",
+        stagger: 0.05,
+        scrollTrigger: { trigger: scope, start: "top 80%" },
+      });
+    }
+    return () => {};
   }
 
-  gsap.from(lines, {
-    yPercent: 120,
-    duration: 1,
-    ease: "expo.out",
-    stagger: opts.stagger ?? 0.12,
-    scrollTrigger: { trigger: scope, start: opts.start ?? "top 72%" },
+  const splits: SplitText[] = [];
+
+  titles.forEach((el) => {
+    splits.push(
+      SplitText.create(el, {
+        type: "lines",
+        mask: "lines",
+        autoSplit: true,
+        linesClass: "reveal-line",
+        onSplit: (self) =>
+          gsap.from(self.lines, {
+            yPercent: 100,
+            ease: "power2.out",
+            stagger: 0.1,
+            scrollTrigger: { trigger: el, ...SCRUB_TRIGGER },
+          }),
+      }),
+    );
   });
+
+  paragraphs.forEach((el) => {
+    splits.push(
+      SplitText.create(el, {
+        type: "lines",
+        autoSplit: true,
+        linesClass: "reveal-line",
+        onSplit: (self) =>
+          gsap.fromTo(
+            self.lines,
+            { clipPath: "inset(0 100% 0 0)" },
+            {
+              clipPath: "inset(0 0% 0 0)",
+              ease: "none",
+              stagger: 0.12,
+              scrollTrigger: { trigger: el, ...SCRUB_TRIGGER },
+            },
+          ),
+      }),
+    );
+  });
+
+  return () => splits.forEach((s) => s.revert());
 }

@@ -8,6 +8,12 @@ import type { SystemCoreState } from "@/types";
  * Switch the System Core to `sectionState` while this section sits in the
  * middle of the viewport. No-op when the 3D core is disabled.
  */
+/**
+ * TEMPORÁRIO: o System Core fica fixo no Hero, sem descer/percorrer as seções.
+ * Mantido `true` para reativar a troca de estado por scroll quando quisermos.
+ */
+const SCROLL_DRIVEN_CORE = false;
+
 export function useCoreSection(
   ref: RefObject<HTMLElement | null>,
   sectionState: SystemCoreState,
@@ -15,7 +21,7 @@ export function useCoreSection(
   const { setState, enabled } = useSystemCore();
 
   useLayoutEffect(() => {
-    if (!enabled || !ref.current) return;
+    if (!SCROLL_DRIVEN_CORE || !enabled || !ref.current) return;
     const trigger = ScrollTrigger.create({
       trigger: ref.current,
       start: "top center",

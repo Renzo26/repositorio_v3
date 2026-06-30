@@ -18,7 +18,7 @@ export interface CoreTarget {
  * x=0 centers it. Accent + light shift the mood per project/section.
  */
 export const CORE_TARGETS: Record<SystemCoreState, CoreTarget> = {
-  hero: { position: [1.75, 0.1, 0], scale: 1.0, rotation: [0.1, 0.5, 0], accent: "pastel-lilac", light: 1.0, separation: 1.0 },
+  hero: { position: [1.7, 0.05, 0], scale: 0.52, rotation: [0.14, 0.5, 0], accent: "pastel-peach", light: 1.0, separation: 1.0 },
   manifesto: { position: [1.5, -0.3, -1.2], scale: 0.72, rotation: [0.2, 1.0, 0], accent: "pastel-lilac", light: 0.5, separation: 1.0 },
   mecaflow: { position: [1.85, 0.0, -0.2], scale: 0.95, rotation: [0.0, 0.8, 0], accent: "pastel-sage", light: 1.0, separation: 1.0 },
   automation: { position: [-1.85, 0.0, -0.2], scale: 0.95, rotation: [0.0, -0.8, 0], accent: "pastel-lilac", light: 1.05, separation: 1.08 },

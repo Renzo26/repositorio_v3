@@ -32,7 +32,13 @@ export function useSmoothScroll(): void {
     gsap.ticker.add(onRaf);
     gsap.ticker.lagSmoothing(0);
 
-    // Recompute trigger positions once fonts/layout settle.
+    // Recompute trigger positions once the real layout exists. Anchored to
+    // fonts being ready (deterministic across machines) rather than a fixed
+    // timeout that can fire before/after layout settles.
+    if (document.fonts?.ready) {
+      void document.fonts.ready.then(() => ScrollTrigger.refresh());
+    }
+    // Safety net for any late layout shift (e.g. 3D canvas mounting).
     const refreshId = window.setTimeout(() => ScrollTrigger.refresh(), 300);
 
     return () => {

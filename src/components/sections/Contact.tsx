@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
@@ -8,7 +8,7 @@ import { SystemCorePlaceholder } from "@/components/three/SystemCorePlaceholder"
 import { useGsap } from "@/hooks/useGsap";
 import { useCoreSection } from "@/hooks/useCoreSection";
 import { useSystemCore } from "@/contexts/SystemCoreContext";
-import { maskReveal, revealBatch } from "@/animations/sectionReveals";
+import { revealBatch, revealText } from "@/animations/sectionReveals";
 import { socialLinks } from "@/data/socialLinks";
 import { site } from "@/data/site";
 
@@ -18,8 +18,8 @@ export function Contact() {
 
   useCoreSection(root, "contact");
   useGsap(root, (scope) => {
-    maskReveal(scope, "[data-line]", { start: "top 78%" });
     revealBatch(scope, { start: "top 80%" });
+    return revealText(scope);
   });
 
   return (
@@ -49,18 +49,20 @@ export function Contact() {
           </SectionLabel>
         </div>
 
-        <h2 className="text-balance mt-10 text-[clamp(2rem,8.5vw,6rem)] font-medium leading-[0.98] tracking-[-0.03em] text-text-primary sm:leading-[0.95]">
+        <h2
+          data-reveal-title
+          className="text-balance mt-10 text-[clamp(2rem,8.5vw,6rem)] font-medium leading-[0.98] tracking-[-0.03em] text-text-primary sm:leading-[0.95]"
+        >
           {site.contact.headline.map((line, i) => (
-            <span key={i} className="block overflow-hidden pb-[0.06em]">
-              <span data-line className="block">
-                {line}
-              </span>
-            </span>
+            <Fragment key={i}>
+              {i > 0 && <br />}
+              {line}
+            </Fragment>
           ))}
         </h2>
 
         <p
-          data-reveal
+          data-reveal-lines
           className="text-pretty mt-8 max-w-lg text-base leading-relaxed text-text-secondary sm:text-lg"
         >
           {site.contact.body}

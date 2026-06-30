@@ -3,7 +3,7 @@ import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { useGsap } from "@/hooks/useGsap";
 import { gsap } from "@/animations/gsap";
-import { revealBatch } from "@/animations/sectionReveals";
+import { revealBatch, revealText } from "@/animations/sectionReveals";
 import { projects } from "@/data/projects";
 import { ProjectChapter } from "./ProjectChapter";
 
@@ -23,6 +23,8 @@ export function SelectedWork() {
         scrollTrigger: { trigger: cover, start: "top 85%", once: true },
       });
     });
+
+    return revealText(scope);
   });
 
   return (
@@ -35,7 +37,7 @@ export function SelectedWork() {
             </SectionLabel>
           </div>
           <p
-            data-reveal
+            data-reveal-lines
             className="max-w-xs text-pretty text-sm leading-relaxed text-text-secondary"
           >
             Três sistemas, lidos como capítulos — produtos, a plataforma por
