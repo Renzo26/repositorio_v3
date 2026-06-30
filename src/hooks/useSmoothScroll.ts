@@ -3,20 +3,16 @@ import { useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import { gsap, ScrollTrigger } from "@/animations/gsap";
 import { getLenisInstance, setLenisInstance } from "@/animations/lenisInstance";
-import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 
 /**
  * App-wide smooth scroll. Creates a single Lenis instance and bridges it to
- * GSAP's ticker + ScrollTrigger. Disabled entirely under prefers-reduced-motion
- * (native scroll, no JS animation loop). Mounted once in AppLayout.
+ * GSAP's ticker + ScrollTrigger. Mounted once in AppLayout.
  */
 export function useSmoothScroll(): void {
-  const reduced = usePrefersReducedMotion();
   const { pathname } = useLocation();
 
   // Lenis ⇄ ScrollTrigger bridge.
   useLayoutEffect(() => {
-    if (reduced) return;
 
     const lenis = new Lenis({
       duration: 1.05,
@@ -47,7 +43,7 @@ export function useSmoothScroll(): void {
       lenis.destroy();
       setLenisInstance(null);
     };
-  }, [reduced]);
+  }, []);
 
   // Reset scroll + refresh triggers on route change.
   useLayoutEffect(() => {
