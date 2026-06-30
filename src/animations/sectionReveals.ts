@@ -19,19 +19,11 @@ export function revealBatch(scope: HTMLElement, opts: RevealOptions = {}): void 
   if (!items.length) return;
 
   if (prefersReducedMotion()) {
-    gsap.set(items, { opacity: 0 });
-    ScrollTrigger.batch(items, {
-      start: opts.start ?? "top 92%",
-      once: true,
-      onEnter: (batch) =>
-        gsap.to(batch, {
-          opacity: 1,
-          duration: 0.5,
-          ease: "power1.out",
-          stagger: 0.04,
-          overwrite: true,
-        }),
-    });
+    // No motion at all — show the final state directly. Tying this to a
+    // ScrollTrigger risked items getting stuck at opacity:0 forever if the
+    // trigger's start position was never satisfied (seen on some desktop
+    // viewport sizes).
+    gsap.set(items, { opacity: 1, y: 0 });
     return;
   }
 
@@ -82,16 +74,11 @@ export function revealText(scope: HTMLElement): () => void {
   );
 
   if (prefersReducedMotion()) {
+    // Same rationale as revealBatch: show elements immediately rather than
+    // relying on a ScrollTrigger that can fail to fire on certain viewport
+    // sizes, leaving text permanently invisible.
     const all = [...titles, ...paragraphs];
-    if (all.length) {
-      gsap.from(all, {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power1.out",
-        stagger: 0.05,
-        scrollTrigger: { trigger: scope, start: "top 80%" },
-      });
-    }
+    if (all.length) gsap.set(all, { opacity: 1, clipPath: "none" });
     return () => {};
   }
 
