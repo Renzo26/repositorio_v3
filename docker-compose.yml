@@ -4,5 +4,5 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: unless-stopped
-    ports:
+    expose:
       - "80"
