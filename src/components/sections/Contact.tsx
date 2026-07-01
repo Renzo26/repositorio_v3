@@ -2,6 +2,7 @@ import { Fragment, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
+import { Highlight } from "@/components/common/Highlight";
 import { Button } from "@/components/common/Button";
 import { AnimatedLink } from "@/components/common/AnimatedLink";
 import { SystemCorePlaceholder } from "@/components/three/SystemCorePlaceholder";
@@ -56,7 +57,7 @@ export function Contact() {
           {site.contact.headline.map((line, i) => (
             <Fragment key={i}>
               {i > 0 && <br />}
-              {line}
+              <Highlight text={line} terms={["útil"]} />
             </Fragment>
           ))}
         </h2>

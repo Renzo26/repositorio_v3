@@ -40,8 +40,9 @@ export function SelectedWork() {
             data-reveal-lines
             className="max-w-xs text-pretty text-sm leading-relaxed text-text-secondary"
           >
-            Três sistemas, lidos como capítulos — produtos, a plataforma por
-            baixo deles e o ecossistema ao redor.
+            Três sistemas, lidos como{" "}
+            <span className="text-pastel-lilac">capítulos</span> — produtos, a
+            plataforma por baixo deles e o ecossistema ao redor.
           </p>
         </div>
 

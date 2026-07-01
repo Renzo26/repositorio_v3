@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Container } from "@/components/common/Container";
 import { SectionLabel } from "@/components/common/SectionLabel";
+import { Highlight } from "@/components/common/Highlight";
 import { useGsap } from "@/hooks/useGsap";
 import { useCoreSection } from "@/hooks/useCoreSection";
 import { revealBatch, revealText } from "@/animations/sectionReveals";
@@ -70,7 +71,7 @@ export function About() {
               data-reveal-lines
               className="text-balance text-[clamp(1.4rem,2.6vw,2.1rem)] font-medium leading-[1.2] tracking-[-0.01em] text-text-primary"
             >
-              {site.about.lead}
+              <Highlight text={site.about.lead} terms={["automação"]} />
             </p>
 
             <div className="mt-8 flex max-w-xl flex-col gap-5">
