@@ -1,8 +1,9 @@
 import { Suspense } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { SystemCoreLayer } from "@/components/three/SystemCoreLayer";
 import { SiteIntro } from "./SiteIntro";
+import { HeroBackdrop } from "./HeroBackdrop";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { Footer } from "./Footer";
 
@@ -19,6 +20,7 @@ function RouteFallback() {
 /** Shared shell: smooth scroll, skip link, nav, routed content, footer. */
 export function AppLayout() {
   useSmoothScroll();
+  const isHome = useLocation().pathname === "/";
 
   return (
     <div className="relative flex min-h-screen flex-col">
@@ -30,6 +32,8 @@ export function AppLayout() {
       >
         Pular para o conteúdo
       </a>
+
+      {isHome && <HeroBackdrop />}
 
       <SystemCoreLayer />
 

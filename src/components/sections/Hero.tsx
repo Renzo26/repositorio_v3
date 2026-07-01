@@ -40,19 +40,9 @@ export function Hero() {
       id="hero"
       className="relative grain flex min-h-screen flex-col justify-center overflow-hidden pt-24 pb-16"
     >
-      {/* Waves background — sits behind the grid + content */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <img
-          src="/Ondas_fundo.png"
-          alt=""
-          className="h-full w-full object-cover object-center"
-        />
-        {/* Darken the left/text side and blend edges into the page */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background-primary via-background-primary/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background-primary/60 via-transparent to-background-primary" />
-      </div>
-
-      {/* faint blueprint backdrop, fades toward edges */}
+      {/* faint blueprint backdrop, fades toward edges.
+          The image + animated waves live in <HeroBackdrop>, rendered behind
+          the global 3D core so the cube stays in front of them. */}
       <div
         aria-hidden
         className="bg-grid pointer-events-none absolute inset-0 opacity-[0.35] [mask-image:radial-gradient(70%_60%_at_50%_40%,black,transparent)]"
